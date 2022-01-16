@@ -1,0 +1,21 @@
+{% from 'macros.html' import form_field %}
+<!DOCTYPE html>
+<html lang = "en">
+    <head>
+        <meta charset = "utf-8">
+        <title>make sure to delete</title>
+    </head>
+    <body>
+        <h2>Please make sure to delete ?</h2>
+        <div>
+            <form method = "post">
+                {{form.csrf_token}}
+                {{form.yes}}
+            </form>
+            <form method = "post">
+                {{form.csrf_token}}
+                {{form.no}}
+            </form>
+        </div>
+    </body>
+</html>

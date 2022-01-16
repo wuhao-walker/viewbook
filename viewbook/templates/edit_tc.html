@@ -1,0 +1,31 @@
+{% from 'macros.html' import form_field %}
+<!DOCTYPE html>
+<html lang = "en">
+    <head>
+        <meta charset = "utf-8">
+        <title>edit_tc</title>
+    </head>
+    <body>
+        {%block content%}
+        <h2>Edit TC</h2>
+        <a href="{{ url_for('DMI_Page',item = item) }}">DMI Page</a>
+        <form method = "post">
+            {{form.csrf_token}}
+            {{form_field(form.Case_ID,rows = 1,cols = 30)}}
+            {{form_field(form.Requirement_ID,rows = 3,cols = 10)}}
+            {{form_field(form.Description,rows = 10,cols = 80)}}
+            {{form_field(form.Verification_Method,rows = 1,cols = 10)}}
+            {{form_field(form.Detail_Steps,rows = 10,cols = 80)}}
+            {{form_field(form.Expected_Result,rows = 5,cols = 80)}}
+            {{form_field(form.Function_Allocation,rows = 1,cols = 10)}}
+            {{form_field(form.Test_Type,rows = 1,cols = 10)}}
+            {{form_field(form.Verification_Procedure_ID,rows = 1,cols = 10)}}
+            {{form_field(form.Verification_Case_Approval_Status,rows = 1,cols = 10)}}
+            {{form_field(form.Verification_Site,rows = 1,cols = 10)}}
+            {{form_field(form.Verification_Status,rows = 1,cols = 10)}}
+            {{form_field(form.Coverage_Analysis,rows = 1,cols = 10)}}
+            {{form.submit}}
+        </form>
+        {%endblock%}
+    </body>
+</html>

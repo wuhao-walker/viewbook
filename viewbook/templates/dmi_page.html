@@ -1,0 +1,66 @@
+{% from 'macros.html' import form_field %}
+<!DOCTYPE html>
+<html lang = "en">
+    <head>
+        <meta charset = "utf-8">
+        <title>item</title>
+    </head>
+    <body>
+        <a class="btn" href="{{ url_for('home')}}">home</a>
+        <h1>TC Page</h1>
+        <div>
+            <form method = "post" enctype="multipart/form-data">
+                {{form1.csrf_token}}
+                {{form_field(form1.excel)}}
+                {{form1.upload}}
+            </form>
+        </div>
+        <p>import db</p>
+        <div>
+            <form method = "post">
+                {{form1.csrf_token}}
+                {{form1.import_data}}
+            </form>
+        </div>
+        <div>
+            <form method = "post">
+                {{form1.csrf_token}}
+                {{form1.delete_db}}
+            </form>
+        </div>
+        <h1>TC viewer</h1>
+        <br/>
+        <a href="{{ url_for('new_tc',item = item) }}">New TC</a>
+        <h4>{{ notes|length }} TCs:</h4>
+        {% for note in notes %}
+            <div class="note">
+                <p>---------------------------------------------------------------------</p>
+                <p>case_id: {{ note.case_id }}</p>
+                <p>req_id: {{ note.req_id }}</p>
+                <p>description:</p>
+                <p>{{ note.description }}</p>
+                <p>verification_method: {{ note.verification_method }}</p>
+                <p>detail_steps:</p>
+                <p>{{ note.detail_steps }}</p>
+                <p>expect_result:</p>
+                <p>{{ note.expect_result }}</p>
+                <p>function_allocation: {{ note.function_allocation }}</p>
+                <p>test_type: {{ note.test_type }}</p>
+                <p>verification_procedure_id: {{ note.verification_procedure_id }}</p>
+                <p>verification_case_approval_status: {{ note.verification_case_approval_status }}</p>
+                <p>verification_site: {{ note.verification_site }}</p>
+                <p>verification_status: {{ note.verification_status }}</p>
+                <p>coverage_analysis: {{ note.coverage_analysis }}</p>
+                <a class="btn" href="{{ url_for('edit_tc',tc_id = note.id,item = item)}}">Edit</a>
+                <form method = "post" action="{{ url_for( 'delete_tc',tc_id=note.id,item = item)}}">
+                    {{ form2.csrf_token }}
+                    {{ form2.submit(class = 'btn') }}
+                </form>
+            </div>
+        {% endfor %}
+        <p>---------------------------------------------------------------------</p>
+        <div>
+            <p>---END---</p>
+        </div>
+    </body>
+</html>
